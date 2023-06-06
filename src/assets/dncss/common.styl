@@ -1,0 +1,544 @@
+//@import "../../../node_modules/@dn/dongni-common/components/common.styl"
+
+.padding-box
+  padding 20px
+
+.main-btn-group
+  position absolute
+  top 10px
+  right 10px
+
+.main
+  padding 0 20px 10px
+
+.edui-editor
+  .edui-default
+    .edui-editor-messageholder
+      display none
+
+// 筛选属性
+.filter-section
+  background-color #FFFFFF
+  padding 20px 20px 5px
+  border 1px solid $c-primary-normal
+  margin-bottom: 20px
+
+// table
+.el-table--border .has-gutter
+  &:after
+    content ''
+    position absolute
+    background-color #ffffff
+    z-index 1
+    width 1px
+    top 0
+    bottom 0
+    right 0
+
+  th:nth-last-of-type(2)
+    border-right: 1px solid $c-border
+
+.el-table
+  thead
+    th
+      background-color #F7F8F9
+      color #333
+
+    &.is-leaf
+      th
+        border-color $c-border
+
+    &.is-group
+      th
+        background #F7F8F9
+
+  .red
+    background-color $c-red-weak
+
+  .yellow
+    background-color $c-orange-weak
+
+  .blue
+    background-color $c-blue-weak
+
+  .green
+    background-color $c-green-weak
+
+  tr
+    td
+      padding 9px 0
+
+    &.hover-row
+      > td
+        background-color $c-background
+
+  .table-link
+    margin 0 10px
+    color $c-primary-normal
+
+.table-border
+  tr
+    td
+      border-right 1px solid #ebeef5
+      border-bottom 1px solid #ebeef5
+
+.el-table__fixed::before, .el-table__fixed-right::before
+  height 0
+
+.el-pagination
+  margin-top 20px
+  text-align center
+
+  .el-pagination__editor
+    height inherit
+
+// element样式覆盖
+.el-loading-parent--relative
+  .el-loading-mask
+    z-index 1999
+
+.cell
+  .el-button--text
+    padding 0
+
+.el-input__inner
+  border 1px solid #cccccc
+  color #606060
+  border-radius 2px
+
+  &::-webkit-input-placeholder
+    color #aaaaaa
+
+.el-input__icon
+  color $c-primary-normal
+
+.el-form-item__label
+  font-weight 700
+
+.el-input-number
+  .el-input-number__decrease
+    &:hover
+      background-color $c-primary-normal
+      color #ffffff
+      border-radius 0
+
+    &.is-disabled
+      color #c0c4cc
+      background-color #f5f7fa
+
+  .el-input-number__increase
+    &:hover
+      background-color $c-primary-normal
+      color #ffffff
+      border-radius 0
+
+    &.is-disabled
+      color #c0c4cc
+      background-color #f5f7fa
+
+.el-input-number__increase:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled), .el-input-number__decrease:hover:not(.is-disabled) ~ .el-input .el-input__inner:not(.is-disabled)
+  border-color $c-border
+
+.btn-large
+  button
+    letter-spacing 3px
+    margin-right 10px
+    width 140px
+    height 40px
+
+// 成绩单等导航
+.tabs
+  .el-tabs--top
+    .el-tabs__item
+      color #606060
+      padding 0 30px
+
+      &.is-top:last-child
+        padding-right 30px
+
+      &.is-active
+        color: #fff
+        background-color $c-primary-normal
+
+    .el-tabs__header
+      border-bottom 2px solid $c-primary-normal
+
+    .el-tabs__active-bar
+      display none
+
+    .el-tabs__nav-wrap::after
+      background-color transparent
+
+    .el-tabs__item.is-top:nth-child(2), .el-tabs--bottom .el-tabs__item:nth-child(2)
+      padding-left 30px
+
+// 注释
+.my-tip
+  color #999
+
+  .mask
+    color red
+    margin-right 10px
+
+// 分页
+.el-pagination
+  &.is-background
+    .el-pager
+      .number
+        vertical-align initial
+        background-color #ffffff
+        border 1px solid $c-border
+
+    .btn-prev
+      background-color #ffffff
+      border 1px solid $c-border
+
+    .btn-next
+      background-color #ffffff
+      border 1px solid $c-border
+
+// 按钮
+.el-button
+  font-family inherit
+  border-radius 2px
+
+  i
+    margin-right 5px
+    font-size 12px
+
+  &.el-button--text
+    &.el-button--small
+      font-size 14px
+
+.el-button--medium
+  padding 10px
+
+.el-button.el-button--text
+  color $c-body
+
+  &.primary
+    color $c-primary-normal
+
+  .dn-icon
+    color $c-primary-normal
+
+.el-radio-button:first-child .el-radio-button__inner
+  border-radius 2px 0 0 2px
+
+.el-radio-button:last-child .el-radio-button__inner
+  border-radius 0 2px 2px 0
+
+.el-radio-button:focus:not(.is-focus):not(:active)
+  -webkit-box-shadow none
+  box-shadow none
+
+.el-button.btn-secondary
+  color #FFFFFF
+  background-color $c-blue
+  border-color $c-blue
+
+  &:hover
+    color #FFFFFF
+    background-color #66b1ff
+    border-color #66b1ff
+
+.el-button.btn-primary-warning
+  color #FFFFFF
+  background-color $c-orange
+  border-color $c-orange
+
+  &:hover
+    color #FFFFFF
+    background-color #EFA118
+    border-color #EFA118
+
+  &:focus
+    color #FFFFFF
+    background-color #EFA118
+    border-color #EFA118
+
+.el-button.btn-primary-orange
+  color #FFFFFF
+  background-color $c-orange
+  border-color $c-orange
+
+  &:hover
+    color #FFFFFF
+    background-color rgba(239, 161, 24, 0.8)
+    border-color rgba(239, 161, 24, 0.8)
+
+  &:focus
+    color #FFFFFF
+    background-color rgba(239, 161, 24, 0.8)
+    border-color rgba(239, 161, 24, 0.8)
+
+.el-button.btn-primary-red
+  color #FFFFFF
+  background-color $c-red
+  border-color $c-red
+
+  &:hover
+    color #FFFFFF
+    background-color rgba(239, 161, 24, 0.8)
+    border-color rgba(239, 161, 24, 0.8)
+
+  &:focus
+    color #FFFFFF
+    background-color rgba(239, 161, 24, 0.8)
+    border-color rgba(239, 161, 24, 0.8)
+
+// 带边框的
+.el-button.btn-danger
+  border-color $c-red
+  color $c-red
+
+  .dn-icon
+    color $c-red
+
+  &:hover
+    border-color $c-red
+    color $c-red
+    background-color rgba(239, 161, 24, 0.2)
+
+.el-button.btn-warning
+  .dn-icon
+    color $c-orange
+
+  &:hover
+    border-color $c-orange
+    background-color #ffffff
+    color $c-body
+
+.el-button.btn-border-blue
+  border-color $c-blue
+  color $c-blue
+
+  &:hover
+    border-color $c-blue
+    background-color rgba(239, 161, 24, 0.2)
+    color $c-blue
+
+.el-button.btn-border-red
+  border-color $c-red
+  color $c-red
+
+  &:hover
+    border-color $c-red
+    background-color rgba(239, 161, 24, 0.2)
+    color $c-red
+
+.el-button.btn-border-primary:not(.is-disabled)
+  border-color $c-primary-normal
+  color $c-primary-normal
+
+  &:hover
+    border-color $c-primary-normal
+    background-color $c-primary-normal
+    color #ffffff
+
+.el-button.btn-border-orange
+  border-color $c-orange
+  color $c-orange
+
+  &:hover
+    border-color $c-orange
+    background-color $c-orange
+    color #ffffff
+
+// 有背景的
+.el-button.btn-bg-blue
+  background $c-blue
+  color white
+  border-color $c-blue
+
+  &:hover
+    background $c-blue
+    color white
+    border-color $c-blue
+
+.el-button.btn-bg-primary
+  background $c-primary-normal
+  color white
+  border-color $c-primary-normal
+
+  &:focus
+  &:hover
+    background $c-primary-hover
+    border-color $c-primary-hover
+    color white
+
+.el-button.btn-bg-orange
+  background $c-orange
+  color white
+  border-color $c-orange
+
+  &:hover
+    background $c-orange
+    border-color $c-orange
+    color white
+
+// 不带边框的
+.el-button.text-btn-primary
+  color $c-primary-normal
+
+  &.is-disabled
+    color #c0c4cc
+
+.el-button.text-btn-danger
+  .dn-icon
+    color $c-red
+
+  &:hover
+    color $c-red
+
+.el-button.text-btn-orange
+  color $c-orange
+
+  &:hover
+    color $c-orange
+
+.el-button.text-btn-red
+  a
+    color $c-red
+
+.el-button.text-btn-primary-light
+  a
+    color $c-primary-light
+
+.el-button.text-btn-grey
+  color $c-tips
+  .dn-icon
+    color $c-tips
+
+// 下载按钮
+.el-button.download
+  color $c-primary-normal
+  border none
+  background-color rgba(85, 157, 65, 0.1)
+  border-radius 20px
+
+  &:hover
+    color #FFFFFF
+    background-color $c-primary-normal
+
+// 标签
+.el-tag--info
+  background-color #ffffff
+  border-radius 20px
+  color $c-body
+  border-color $c-border
+
+  .el-tag__close
+    color $c-body
+    background-color $c-border
+    border-radius 50%
+
+    &:hover
+      background-color $c-red
+
+// 提示气泡
+.el-message
+  border none
+  z-index 3000 !important
+
+  .el-message__icon
+    color #ffffff
+
+  .el-message__content
+    color #ffffff
+
+.el-message--success
+  background-color $c-primary-weak
+
+.el-message--error
+  background-color $c-red
+
+.el-message--info
+  background-color $c-body
+
+.container-bg
+  background white
+
+@keyframes dn-buzz-out
+  10% {
+    -webkit-transform: translateX(3px) rotate(2deg)
+    transform: translateX(3px) rotate(2deg)
+  }
+  20% {
+    -webkit-transform: translateX(-3px) rotate(-2deg)
+    transform: translateX(-3px) rotate(-2deg)
+  }
+  30% {
+    -webkit-transform: translateX(3px) rotate(2deg)
+    transform: translateX(3px) rotate(2deg)
+  }
+  40% {
+    -webkit-transform: translateX(-3px) rotate(-2deg)
+    transform: translateX(-3px) rotate(-2deg)
+  }
+  50% {
+    -webkit-transform: translateX(2px) rotate(1deg)
+    transform: translateX(2px) rotate(1deg)
+  }
+  60% {
+    -webkit-transform: translateX(-2px) rotate(-1deg)
+    transform: translateX(-2px) rotate(-1deg)
+  }
+  70% {
+    -webkit-transform: translateX(2px) rotate(1deg)
+    transform: translateX(2px) rotate(1deg)
+  }
+  80% {
+    -webkit-transform: translateX(-2px) rotate(-1deg)
+    transform: translateX(-2px) rotate(-1deg)
+  }
+  90% {
+    -webkit-transform: translateX(1px) rotate(0)
+    transform: translateX(1px) rotate(0)
+  }
+  100% {
+    -webkit-transform: translateX(-1px) rotate(0)
+    transform: translateX(-1px) rotate(0)
+  }
+
+.dn-buzz-out:hover, .dn-buzz-out:focus, .dn-buzz-out:active
+  -webkit-animation-name dn-buzz-out
+  animation-name dn-buzz-out
+  -webkit-animation-duration 0.75s
+  animation-duration 0.75s
+  -webkit-animation-timing-function linear
+  animation-timing-function linear
+  -webkit-animation-iteration-count 1
+  animation-iteration-count 1
+.el-message-box__content
+  max-height calc(100vh - 200px)
+  overflow auto
+
+// 面包屑样式
+.el-breadcrumb
+  .el-breadcrumb__inner.is-link
+    font-weight normal
+    color $c-body
+
+  .active
+    .el-breadcrumb__inner
+      color $c-primary-normal
+
+/*页面跳转进度条*/
+.nprogress-busy
+  #nprogress
+    .bar
+      z-index 3000
+      background: linear-gradient(to right, $c-primary-normal, $c-orange, $c-blue, $c-red)
+
+    .peg
+      box-shadow none
+// 解决dropdown-menu数据太多；无法滚动问题
+.el-dropdown-menu
+  .el-tabs .el-tabs__content
+    max-height calc(100vh - 100px)
+    overflow auto
+    .el-dropdown-menu__item div
+      overflow hidden
+
+
