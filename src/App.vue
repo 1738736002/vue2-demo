@@ -11,7 +11,7 @@
 </template>
 
 <style lang="stylus">
-@import "assets/dncss/common.styl"
+//@import "assets/dncss/common.styl"
 #app
   background #f5f5f5
 :root {

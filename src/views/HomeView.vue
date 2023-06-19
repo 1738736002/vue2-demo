@@ -8,14 +8,14 @@
 <script>
 // @ is an alias to /src
 import VueDocumentPage from '@/components/VueDocumentPage'
-import HelloWorld from '@/components/HelloWorld'
+// import HelloWorld from '@/components/HelloWorld'
 import { contentData } from './pageData.js'
 export default {
   name: 'HomeView',
   components: {VueDocumentPage},
   data () {
     return {
-      content: [{template: HelloWorld}, ...contentData()]
+      content: [...contentData()]
     }
   },
   mounted () {

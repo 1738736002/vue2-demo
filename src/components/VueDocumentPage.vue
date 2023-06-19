@@ -5,11 +5,13 @@
 -->
 <template>
   <div class="main">
+    <vue-file-toolbar-menu :content="menuList" class="bar" />
     <vue-document-editor
+      v-if="pageContent.length"
       class="editor"
       ref="editor"
       :content.sync="pageContent"
-      :editable="true"
+      :editable="false"
       :overlay="overlay"
       :zoom="zoom"
       :page_format_mm="page_format_mm"
@@ -22,6 +24,7 @@
 // vuex等插件
 
 // 组件
+import VueFileToolbarMenu from 'vue-file-toolbar-menu'
 import VueDocumentEditor from 'vue-document-editor'
 // 枚举
 
@@ -33,7 +36,7 @@ import VueDocumentEditor from 'vue-document-editor'
 
 export default {
   // 组件
-  components: {VueDocumentEditor},
+  components: { VueDocumentEditor, VueFileToolbarMenu },
   props: {
     content: {
       type: [Array, Object],
@@ -46,7 +49,7 @@ export default {
     return {
       page_format_mm: [210, 297],
       page_margins: '15mm 15mm',
-      display: 'grid', // ["grid", "vertical", "horizontal"]
+      display: 'vertical', // ["grid", "vertical", "horizontal"]
       mounted: false, // will be true after this component is mounted
       undo_count: -1,
       zoom: 1
@@ -61,7 +64,119 @@ export default {
       } else {
         return []
       }
-    }
+    },
+    menuList () {
+      return [
+        { // Format menu
+          text: this.current_format_name,
+          title: 'Format',
+          icon: 'crop_free',
+          chevron: true,
+          menu: this.formats.map(([text, w, h]) => {
+            return {
+              text,
+              active: (this.page_format_mm[0] === w && this.page_format_mm[1] === h),
+              click: () => { this.page_format_mm = [w, h] }
+            }
+          }),
+          menu_width: 80,
+          menu_height: 280
+        },
+        { // Margins menu
+          text: this.current_margins_name,
+          title: 'Margins',
+          icon: 'select_all',
+          chevron: true,
+          menu: this.margins.map(([text, value]) => {
+            return {
+              text: text + ' (' + value + ')',
+              active: (this.page_margins === value),
+              click: () => { this.page_margins = value }
+            }
+          }),
+          menu_width: 200,
+          menu_class: 'align-center'
+        },
+        { // Zoom menu
+          text: Math.floor(this.zoom * 100) + '%',
+          title: 'Zoom',
+          icon: 'zoom_in',
+          chevron: true,
+          menu: [
+            ['200%', 2.0],
+            ['150%', 1.5],
+            ['125%', 1.25],
+            ['100%', 1.0],
+            ['75%', 0.75],
+            ['50%', 0.5],
+            ['25%', 0.25]
+          ].map(([text, zoom]) => {
+            return {
+              text,
+              active: this.zoom === zoom,
+              click: () => { this.zoom = zoom }
+            }
+          }),
+          menu_width: 80,
+          menu_height: 280,
+          menu_class: 'align-center'
+        },
+        { // Display mode menu
+          title: 'Display',
+          icon: this.display === 'horizontal' ? 'view_column' : (this.display === 'vertical' ? 'view_stream' : 'view_module'),
+          chevron: true,
+          menu: [{
+            icon: 'view_module',
+            active: this.display === 'grid',
+            click: () => { this.display = 'grid' }
+          }, {
+            icon: 'view_column',
+            active: this.display === 'horizontal',
+            click: () => { this.display = 'horizontal' }
+          }, {
+            icon: 'view_stream',
+            active: this.display === 'vertical',
+            click: () => { this.display = 'vertical' }
+          }],
+          menu_width: 55,
+          menu_class: 'align-right'
+        }
+      ]
+    },
+    current_format_name () {
+      // eslint-disable-next-line camelcase
+      const format = this.formats.find(([, width_mm, height_mm]) => (this.page_format_mm[0] === width_mm && this.page_format_mm[1] === height_mm))
+      return format ? format[0] : (this.page_format_mm[0] + 'mm x ' + this.page_format_mm[1] + 'mm')
+    },
+    formats: () => [
+      ['A0', 841, 1189],
+      ['A0L', 1189, 841],
+      ['A1', 594, 841],
+      ['A1L', 841, 594],
+      ['A2', 420, 594],
+      ['A2L', 594, 420],
+      ['A3', 297, 420],
+      ['A3L', 420, 297],
+      ['A4', 210, 297],
+      ['A4L', 297, 210],
+      ['A5', 148, 210],
+      ['A5L', 210, 148],
+      ['A6', 105, 148],
+      ['A6L', 148, 105]
+    ],
+
+    // Margins management
+    current_margins_name () {
+      const margins = this.margins.find(([, margins]) => (this.page_margins === margins))
+      return margins ? margins[0] : this.page_margins
+    },
+    margins: () => [
+      ['Medium', '20mm'],
+      ['Small', '15mm'],
+      ['Slim', '10mm 15mm'],
+      ['Tiny', '5mm']
+    ],
+    current_text_style () { return this.mounted ? this.$refs.editor.current_text_style : false }
   },
 
   // 监控
@@ -110,5 +225,14 @@ export default {
   --bar-button-open-color: #188038;
   --bar-button-active-bkg: #e6f4ea;
   --bar-button-open-bkg: #e6f4ea;
+}
+.menu-box {
+  position fixed;
+  top 0;
+  background #aaaaaa;
+  height 40px;
+  width 100%;
+  display flex;
+  align-items center;
 }
 </style>
