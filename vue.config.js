@@ -1,7 +1,9 @@
 const { defineConfig } = require('@vue/cli-service')
 const path = require('path')
 module.exports = defineConfig({
-  transpileDependencies: true
+  publicPath: '/vue2-demo/',
+  transpileDependencies: true,
+  outputDir: 'docs'
   // chainWebpack: config => {
   //   // 配置自动导入公共样式文件
   //   const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
